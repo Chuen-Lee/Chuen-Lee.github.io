@@ -1,0 +1,64 @@
+---
+title: "Home"
+date: "2022-04-21"
+---
+
+##   
+  
+**Current Work**
+
+![](https://chuenlee.files.wordpress.com/2022/04/f32f452f-cbda-4cc7-ba02-43f2aa36f6ce_1_201_a-2.jpeg?w=989)
+
+### Metagenomics of the gut microbiome in an isolated wild vertebrate population
+
+Investigating changes in microbial metagenomes with ageing and survival.
+
+https://youtu.be/0WEfBVvu-kY
+
+[Seychelles Warbler on Cousin Island](https://youtu.be/0WEfBVvu-kY)
+
+https://youtu.be/ZtjrOj2W2e4
+
+[Sunset on Cousin Island](https://youtu.be/ZtjrOj2W2e4)
+
+https://youtu.be/rzTH9kV3GtA
+
+[Seychelles Magpie Robin](https://youtu.be/rzTH9kV3GtA)
+
+https://youtu.be/3-qDa9IVeB0
+
+[White-tailed Tropicbird](https://youtu.be/3-qDa9IVeB0)
+
+## **Previous Work**
+
+[![](https://chuenlee.files.wordpress.com/2022/04/gut-virome-1.jpg?w=942)](//www.nature.com/articles/s41598-022-05656-3)
+
+### [The gut virome in two indigenous populations from Malaysia](//www.nature.com/articles/s41598-022-05656-3)
+
+The human gut contains a complex microbiota dominated by bacteriophages but also containing other viruses and bacteria and fungi. There are a growing number of techniques for the extraction, sequencing, and analysis of the virome but currently no standardized protocols. This study established an effective workflow for virome analysis to investigate the virome of stool samples from two understudied ethnic groups from Malaysia: the Jakun and Jehai Orang Asli. By using the virome extraction and analysis workflow with the Oxford Nanopore Technology, long-read sequencing successfully captured close to full-length viral genomes. The virome composition of the two indigenous Malaysian communities were remarkably different from those found in other parts of the world. Additionally, plant viruses found in the viromes of these individuals were attributed to traditional food-seeking methods. This study establishes a human gut virome workflow and extends insights into the healthy human gut virome, laying the groundwork for comparative studies.
+
+[Read the Research Article](//www.nature.com/articles/s41598-022-05656-3)  
+  
+
+![](https://chuenlee.files.wordpress.com/2022/04/img_3005.jpeg?w=1024)
+
+Photographed during a fieldwork trip on Cousin Island, Seychelles  
+  
+
+![](https://chuenlee.files.wordpress.com/2022/04/1-s2.0-s2666517421000705-ga1_lrg.jpg?w=1024)
+
+### **Other Publications**
+
+[A review on association of fungi with the development and progression of carcinogenesis in the human body](https://www.sciencedirect.com/science/article/pii/S2666517421000705)
+
+[Molecular typing of multi-drug resistant _Candida albicans_ isolated from the Segamat community, Malaysia](https://link.springer.com/article/10.1007/s42770-021-00558-4)
+
+![](https://chuenlee.files.wordpress.com/2022/04/me.jpg?w=257)
+
+## Contact me
+
+Email: [Chuen.Lee@uea.ac.uk](mailto:Chuen.Lee@uea.ac.uk)
+
+[The gut virome in two indigenous populations from Malaysia](https://www.nature.com/articles/s41598-022-05656-3)
+
+[Email](Chuen.Lee@uea.ac.uk)

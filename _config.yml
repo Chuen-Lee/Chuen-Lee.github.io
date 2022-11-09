@@ -4,7 +4,7 @@ relative_links:
   enabled: true
   collections: true
 markdown: kramdown
-theme: theme-minima
+theme: minima
 include:
   - 2022-04-21-home.md
   - 2022-04-21-bush-gas-dream-gas.md

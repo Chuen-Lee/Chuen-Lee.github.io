@@ -1,4 +1,5 @@
 ---
+layout: page
 title: "Poems from experience"
 date: "2022-04-21"
 permalink: /poems-from-experience

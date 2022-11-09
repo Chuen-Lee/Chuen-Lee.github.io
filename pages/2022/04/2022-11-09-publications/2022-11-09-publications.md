@@ -2,7 +2,7 @@
 layout: page
 title: "Publication"
 date: "2022-11-09"
-permalink: /poetree
+permalink: /publication
 ---
 
 ![](https://chuenlee.files.wordpress.com/2022/04/chuenlogotransparenthd.png?resize=438%2C438)

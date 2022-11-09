@@ -3,7 +3,6 @@ layout: post
 title: "Bush gas Dream gas"
 date: "2022-04-22"
 categories: Poems
-published: = true
 ---
 
   

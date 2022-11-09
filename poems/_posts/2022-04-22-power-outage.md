@@ -3,6 +3,7 @@ layout: post
 title: "Power Outage"
 date: "2022-04-22"
 published: true
+permalink: /poems/_posts/2022-04-22-power-outage
 ---
 
   

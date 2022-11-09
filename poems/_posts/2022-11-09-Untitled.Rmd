@@ -2,7 +2,7 @@
 title: "Poemtest"
 author: "Chuen"
 date: "11/9/2022"
-output: html_document
+permalink: /poemtest
 ---
 
 ```{r setup, include=FALSE}

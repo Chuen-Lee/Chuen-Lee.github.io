@@ -4,11 +4,8 @@ relative_links:
   enabled: true
   collections: true
 include:
-  - home.md
-  - /pages/2022/04/2022-04-21-bush-gas-dream-gas/2022-04-21-bush-gas-dream-gas.md
-  - LICENSE.md
-  - COPYING.md
-  - CODE_OF_CONDUCT.md
-  - CONTRIBUTING.md
-  - ISSUE_TEMPLATE.md
-  - PULL_REQUEST_TEMPLATE.md
+  - 2022-04-21-home.md
+  - 2022-04-21-bush-gas-dream-gas.md
+  - 2022-04-21-microbiome.md
+  - 2022-04-21-poems-from-experience.md
+  - 2022-04-22-power-outage.md

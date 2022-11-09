@@ -5,3 +5,5 @@ relative_links:
   collections: true
 markdown: kramdown
 theme: minima
+include:
+    - 2022-04-22-microbiome.md

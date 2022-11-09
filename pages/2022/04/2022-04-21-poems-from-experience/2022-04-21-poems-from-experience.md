@@ -2,7 +2,6 @@
 layout: page
 title: "Poems from experience"
 date: "2022-04-21"
-permalink: /poems-from-experience
 ---
 
 ![](https://chuenlee.files.wordpress.com/2022/04/img_1939-1.jpeg?w=1024)

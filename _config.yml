@@ -5,11 +5,5 @@ relative_links:
   collections: true
 markdown: kramdown
 theme: minima
-include:
-  - 2022-04-21-home.md
-  - 2022-04-21-bush-gas-dream-gas.md
-  - 2022-04-21-microbiome.md
-  - 2022-04-21-poems-from-experience.md
-  - 2022-04-22-power-outage.md
-  - index.html
-  - _posts
+header_pages:
+    - 2022-04-21-poems-from-experience.md

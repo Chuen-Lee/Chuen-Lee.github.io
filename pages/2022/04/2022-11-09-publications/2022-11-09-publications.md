@@ -5,7 +5,7 @@ date: "2022-11-09"
 permalink: /poetree
 ---
 
-![](https://chuenlee.files.wordpress.com/2022/04/img_1939-1.jpeg?w=1024)
+![](https://chuenlee.files.wordpress.com/2022/04/chuenlogotransparenthd.png?resize=438%2C438)
 
 # **Chuen's Publication**
 

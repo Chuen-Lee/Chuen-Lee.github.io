@@ -1,6 +1,7 @@
 ---
 title: "Power Outage"
 date: "2022-04-22"
+permalink: /power-outage
 ---
 
   

@@ -5,5 +5,3 @@ relative_links:
   collections: true
 markdown: kramdown
 theme: minima
-include:
-    - poems

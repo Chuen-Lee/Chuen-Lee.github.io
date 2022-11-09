@@ -3,6 +3,7 @@ layout: post
 title: "Bush gas Dream gas"
 date: "2022-04-21"
 published: true
+permalink: /bush-gas-dream-gas
 ---
 
   

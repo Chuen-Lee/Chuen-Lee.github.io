@@ -6,7 +6,7 @@ published: true
 permalink: /bush-gas-dream-gas
 ---
 
-  
+
   
 High stepping through the muddy grounds of desire.  
 Turning right into bush’s concealed smoke cloud.  

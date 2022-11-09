@@ -1,13 +1,13 @@
 ---
 layout: page
-title: "Publication"
+title: "Publications"
 date: "2022-11-09"
-permalink: /publication
+permalink: /publications
 ---
 
 ![](https://chuenlee.files.wordpress.com/2022/04/chuenlogotransparenthd.png?resize=438%2C438)
 
-# **Chuen's Publication**
+# **Chuen's Publications**
 
 * * *
 

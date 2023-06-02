@@ -290,4 +290,6 @@ round((end_time - start_time), 3)
 # Acknowledgment
 Thank you for going through the code and supporting open research. This paper would not have been possible without all authors contributing towards it. Massive thanks to everyone that has shared their excitement for this paper.
 
+<p align="center">
 ![](Output/chuenlogotransparenthd.png){width=30%}
+</p>

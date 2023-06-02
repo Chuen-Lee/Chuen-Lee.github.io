@@ -6,12 +6,30 @@ date: "2023-06-01"
 output:
   html_notebook:
     toc: true
+    toc_float:
+      collapsed: TRUE
     theme: yeti
 permalink: /sw_morph
 ---
+```{r, echo=F, time_it=FALSE}
+knitr::knit_hooks$set(time_it = local({
+  now <- NULL
+  function(before, options) {
+    if (before) {
+      # record the current time before each chunk
+      now <<- Sys.time()
+    } else {
+      # calculate the time difference after a chunk
+      res <- difftime(Sys.time(), now, units = "secs")
+      # return a character string to show the time
+     paste("Time:", round(res,2), "seconds")
+    }
+  }
+}))
+```
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include=FALSE, time_it=FALSE}
+knitr::opts_chunk$set(echo = TRUE,out.width = '100%',  fig.align = "center", message = FALSE, warning = FALSE, fig.height = 8, fig.width =10, time_it = TRUE, error = TRUE)
 ```
 
 ## Study Design
@@ -54,9 +72,11 @@ library(tidyr)
 sessionInfo()
 ```
 </details>
-
+```{r include=FALSE}
+start_time<-Sys.time()
+```
 ## Data files
-Data files [ADD_I](https://github.com/Chuen-Lee/Chuen-Lee.github.io/blob/f4968a001d34c522a912ba3a350bb058d50a4775/pages/2023/SeychellesWarbler/Tables/ADD_I.csv) and [ADD_R](https://github.com/Chuen-Lee/Chuen-Lee.github.io/blob/f4968a001d34c522a912ba3a350bb058d50a4775/pages/2023/SeychellesWarbler/Tables/ADD_R.csv) are available on the github page.
+Data file [ADD_I](https://github.com/Chuen-Lee/Chuen-Lee.github.io/blob/f4968a001d34c522a912ba3a350bb058d50a4775/pages/2023/SeychellesWarbler/Tables/ADD_I.csv) is available on the github page.
 
 # Morphometric and Island Comparison
 
@@ -179,9 +199,9 @@ Imods
 ## Preparing data
 
 ```{r fit data}
-ADD_R <- read_csv("Tables/ADD_R.csv", col_types = cols(SexEstimate = col_factor()))
-ADD_Real <- as.data.frame(ADD_R)
-ADD_Real <- ADD_Real %>% select(RightTarsus,BodyMass,WingLength,HeadBill,BirdID,SexEstimate,BirthYear,Lifespan,SurvStatus,ReproductiveOutput) 
+# make a non-redundant data set for lifespan and reproduction
+ADD_Real <- ADD_I %>% filter(Island == "CN") %>% group_by(BirdID) %>% mutate(across(c(RightTarsus,BodyMass,WingLength,HeadBill),mean, na.rm=TRUE)) %>% filter(!duplicated(BirdID)) %>% select(RightTarsus,BodyMass,WingLength,HeadBill,BirdID,SexEstimate,BirthYear,Lifespan,SurvStatus,ReproductiveOutput) %>% mutate(SexEstimate = as.factor(SexEstimate))
+# filter for missing values
 ADD_tidy <- ADD_Real %>% filter(!is.na(RightTarsus) & !is.na(BodyMass)  & !is.na(WingLength)  & !is.na(HeadBill) & !is.na(SexEstimate)  & !is.na(Lifespan) ) %>% mutate(BodyCondition = BodyMass/RightTarsus) %>% mutate(SexEstimate = as.factor(SexEstimate))
 ```
 
@@ -198,23 +218,24 @@ lscox2 <- coxme(Surv(Lifespan,SurvStatus) ~ RightTarsus*poly(BodyMass,2) + WingL
 lscox3 <- coxme(Surv(Lifespan,SurvStatus) ~ poly(BodyCondition,2) + WingLength + HeadBill +SexEstimate + (1|BirthYear), data= ADD_tidy)
 lscox4 <- coxme(Surv(Lifespan,SurvStatus) ~ RightTarsus+ poly(BodyMass,2)*SexEstimate + WingLength + HeadBill + (1|BirthYear), data= ADD_tidy)
 
-AIC(lscox0,lscox1,lscox2,lscox3,lscox4) #quadratic body mass is best
-BIC(lscox0,lscox1,lscox2,lscox3,lscox4)
+AIC(lscox0,lscox1,lscox2,lscox3,lscox4) # lscox4 best
+BIC(lscox0,lscox1,lscox2,lscox3,lscox4) # lscox4 best
 # lscox4 was selected based on the best AIC and BIC values
+
+lscox4
 ```
 
 ### Predicting and plotting coxme
 
 ```{r coxme predict}
 ####predict lifespan----
-ADD_round <- ADD_R %>%mutate(across(c(RightTarsus, BodyMass, HeadBill, WingLength), round, 0)) %>% distinct(RightTarsus, BodyMass, HeadBill, WingLength,SexEstimate) %>% filter(!is.na(RightTarsus) & !is.na(BodyMass)  & !is.na(WingLength)  & !is.na(HeadBill) & !is.na(SexEstimate))
-
+ADD_round <- ADD_Real %>%mutate(across(c(RightTarsus, BodyMass, HeadBill, WingLength), round, 0)) %>% distinct(RightTarsus, BodyMass, HeadBill, WingLength,SexEstimate) %>% filter(!is.na(RightTarsus) & !is.na(BodyMass)  & !is.na(WingLength)  & !is.na(HeadBill) & !is.na(SexEstimate))
 ADD_end <- bind_rows(ADD_tidy,ADD_round)
-
 rs <- predict_coxme(lscox4,newdata = ADD_end,type="risk", se.fit=TRUE)
 rsend <- ADD_end %>% add_columns(rr = rs$fit[,1], se.fit = rs$se.fit[,1])
-ADD_tail <- rsend %>% tail(nrow(ADD_round)) %>% mutate(SexEstimate = as.factor(SexEstimate)) %>% mutate(low = exp(log(rr) - 1.96 * se.fit),high = exp(log(rr) + 1.96 * se.fit)) %>% group_by(BodyMass,SexEstimate) %>% summarise(mean_rr=mean(rr),mean_se.fit=mean(se.fit), mean_low=mean(low),mean_high=mean(high))
+ADD_tail <- rsend %>% tail(nrow(ADD_round)) %>% mutate(SexEstimate = as.factor(SexEstimate)) %>% group_by(BodyMass,SexEstimate) %>% summarise(mean_rr=mean(rr),mean_se.fit=mean(se.fit))
 
+# plotting coxme
 coxmeplot <- ggplot(ADD_tail,aes(x=BodyMass,y=mean_rr)) + 
   geom_line(aes(colour=SexEstimate)) +
   geom_ribbon(aes(fill=SexEstimate,ymin=mean_rr-mean_se.fit,ymax=mean_rr+mean_se.fit), alpha = 0.25) + 
@@ -230,6 +251,7 @@ coxmeplot <- ggplot(ADD_tail,aes(x=BodyMass,y=mean_rr)) +
 ### Model comparisons
 
 ```{r glm}
+###Reproduction glm----
 ROglmF <- glm(ReproductiveOutput ~ RightTarsus+ BodyMass + WingLength + HeadBill  ,data = ADD_tidy, family = "poisson")
 ROglmR <- glm(ReproductiveOutput ~ poly(Lifespan,2) + SexEstimate + BirthYear,data = ADD_tidy, family = "poisson")
 ROglm0 <- glm(ReproductiveOutput ~ RightTarsus+ BodyMass + WingLength + HeadBill  + Lifespan + SexEstimate + BirthYear,data = ADD_tidy, family = "poisson")
@@ -239,8 +261,9 @@ ROglm3 <- glm(ReproductiveOutput ~ RightTarsus+ poly(BodyMass,2) + WingLength + 
 ROglm4 <- glm(ReproductiveOutput ~ RightTarsus+ BodyMass + poly(WingLength,2) + HeadBill  + poly(Lifespan,2) + SexEstimate + BirthYear,data = ADD_tidy, family = "poisson")
 ROglm5 <- glm(ReproductiveOutput ~ RightTarsus+ BodyMass + WingLength + poly(HeadBill,2)  + poly(Lifespan,2) + SexEstimate + BirthYear,data = ADD_tidy, family = "poisson")
 
-AIC(ROglmF,ROglmR,ROglm0,ROglm1,ROglm2,ROglm3,ROglm4,ROglm5) # 4 best, 1 second
-BIC(ROglmF,ROglmR,ROglm0,ROglm1,ROglm2,ROglm3,ROglm4,ROglm5) # 1 best 
+AIC(ROglmF,ROglmR,ROglm0,ROglm1,ROglm2,ROglm3,ROglm4,ROglm5) # ROglm4 slightly better than ROglm1 second
+BIC(ROglmF,ROglmR,ROglm0,ROglm1,ROglm2,ROglm3,ROglm4,ROglm5) # ROglm1 best 
+#ROglm1 was selected based on AIC and BIC scores
 vif(ROglm1)
 
 summary(ROglm1)
@@ -249,8 +272,14 @@ summary(ROglm1)
 ### Predicting and plotting GLM
 
 ```{r glm predict}
+####predict reproduction----
+# grouping variables for glm plot
 ROplotdata <- ADD_tidy %>% mutate(BodyMass = case_when(BodyMass > 16.5 ~ "16.5", BodyMass < 14.5 ~ "14.5",BodyMass < 16.5 & BodyMass > 14.5 ~ "15.5")) %>% filter(!is.na(BodyMass))
+
+# predicting glm 
 ROglmdat <- ggpredict(ROglm1, terms = c("Lifespan","BodyMass")) %>% rename(Lifespan=x,ReproductiveOutput=predicted,BodyMass=group)
+
+#plotting glm
 ROglmplot <- ggplot(ROglmdat, aes(x=Lifespan,y=ReproductiveOutput)) + 
   geom_point(data = ROplotdata, mapping=aes(x=Lifespan,y=ReproductiveOutput,colour=BodyMass),position="jitter") +
   geom_smooth(aes(colour=BodyMass), se = FALSE) + 
@@ -266,7 +295,14 @@ ROglmplot <- ggplot(ROglmdat, aes(x=Lifespan,y=ReproductiveOutput)) +
 fitplot <- ggarrange(coxmeplot,ROglmplot,  labels = c("A","B"))
 fitplot
 ```
-# Thank you
-Thank you for going through the code and supporting open research.
+Time taken to run the whole script
+```{r time, echo=FALSE, time_it=FALSE}
+end_time<-Sys.time()
+
+round((end_time - start_time), 3)
+```
+
+# Acknowledgment
+Thank you for going through the code and supporting open research. This paper would not have been possible without all authors contributing towards it. Massive thanks to everyone that has shared their excitement for this paper.
 
 ![](Output/chuenlogotransparenthd.png){width=30%}

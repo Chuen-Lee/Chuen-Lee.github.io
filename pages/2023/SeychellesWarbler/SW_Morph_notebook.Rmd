@@ -11,25 +11,10 @@ output:
     theme: yeti
 permalink: /sw_morph
 ---
-```{r, echo=F, time_it=FALSE}
-knitr::knit_hooks$set(time_it = local({
-  now <- NULL
-  function(before, options) {
-    if (before) {
-      # record the current time before each chunk
-      now <<- Sys.time()
-    } else {
-      # calculate the time difference after a chunk
-      res <- difftime(Sys.time(), now, units = "secs")
-      # return a character string to show the time
-     paste("Time:", round(res,2), "seconds")
-    }
-  }
-}))
-```
 
-```{r setup, include=FALSE, time_it=FALSE}
-knitr::opts_chunk$set(echo = TRUE,out.width = '100%',  fig.align = "center", message = FALSE, warning = FALSE, fig.height = 8, fig.width =10, time_it = TRUE, error = TRUE)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,out.width = '100%',  fig.align = "center", message = FALSE, warning = FALSE, fig.height = 8, fig.width =10, error = TRUE)
 ```
 
 ## Study Design
@@ -296,7 +281,7 @@ fitplot <- ggarrange(coxmeplot,ROglmplot,  labels = c("A","B"))
 fitplot
 ```
 Time taken to run the whole script
-```{r time, echo=FALSE, time_it=FALSE}
+```{r time, echo=FALSE}
 end_time<-Sys.time()
 
 round((end_time - start_time), 3)

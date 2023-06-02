@@ -8,7 +8,7 @@ output:
     toc: true
     toc_float:
       collapsed: TRUE
-    theme: united
+    theme: yeti
 ---
 
 Raw code available at [SW_Morphology](https://github.com/Chuen-Lee/SW_Morphology)

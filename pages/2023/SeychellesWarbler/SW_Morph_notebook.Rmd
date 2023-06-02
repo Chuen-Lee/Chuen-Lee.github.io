@@ -14,16 +14,11 @@ permalink: /sw_morph
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-The code below was used to produce all figures and tables used in the paper. 
-
-Data files ADD_I and ADD_R are available on the github page.
-
-
 ## Study Design
 
 ![](Output/StudyDesign.png)
 
-# R setup
+# Setup
 
 ## Load all packages
 
@@ -53,11 +48,16 @@ library(ehahelper)
 library(dena)
 library(tidyr)
 ```
+### sessionInfo()
 <details>
 ```{r}
 sessionInfo()
 ```
 </details>
+
+## Data files
+Data files [ADD_I](https://github.com/Chuen-Lee/Chuen-Lee.github.io/blob/f4968a001d34c522a912ba3a350bb058d50a4775/pages/2023/SeychellesWarbler/Tables/ADD_I.csv) and [ADD_R](https://github.com/Chuen-Lee/Chuen-Lee.github.io/blob/f4968a001d34c522a912ba3a350bb058d50a4775/pages/2023/SeychellesWarbler/Tables/ADD_R.csv) are available on the github page.
+
 # Morphometric and Island Comparison
 
 ## Preparing Data

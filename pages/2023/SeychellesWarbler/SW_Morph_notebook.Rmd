@@ -12,6 +12,7 @@ output:
 permalink: /sw_morph
 ---
 
+Raw code available at [SW_Morphology](https://github.com/Chuen-Lee/SW_Morphology)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,out.width = '100%',  fig.align = "center", message = FALSE, warning = FALSE, fig.height = 8, fig.width =10, error = TRUE)

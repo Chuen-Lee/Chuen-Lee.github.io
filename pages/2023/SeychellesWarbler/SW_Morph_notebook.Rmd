@@ -8,8 +8,7 @@ output:
     toc: true
     toc_float:
       collapsed: TRUE
-    theme: yeti
-permalink: /sw_morph
+    theme: united
 ---
 
 Raw code available at [SW_Morphology](https://github.com/Chuen-Lee/SW_Morphology)
@@ -28,40 +27,37 @@ knitr::opts_chunk$set(echo = TRUE,out.width = '100%',  fig.align = "center", mes
 
 ```{r libraries, echo = T, message = FALSE}
 # libraries
-library(readr)
-library(sjPlot)
-library(sjmisc)
-library(sjlabelled)
-library(gganimate)
-library(gifski)
-library(dplyr)
-library(tidyr)
-library(ggthemes)
-library(ggpubr)
-library(lme4)
-library(ggeffects)
-library(lmerTest)
 library(car)
-library(ggplot2)
-library(survival)
 library(coxme)
-library(survminer)
-library(ggfortify)
-library(broom)
+library(dplyr)
 library(ehahelper)
-library(dena)
-library(tidyr)
+library(ggeffects)
+library(ggplot2)
+library(ggpubr)
+library(ggthemes)
+library(lme4)
+library(lmerTest)
+library(readr)
+library(sjmisc)
+library(survival)
 ```
+
 ### sessionInfo()
+
 <details>
+
 ```{r}
 sessionInfo()
 ```
+
 </details>
+
 ```{r include=FALSE}
 start_time<-Sys.time()
 ```
+
 ## Data files
+
 Data file [ADD_I](https://github.com/Chuen-Lee/Chuen-Lee.github.io/blob/f4968a001d34c522a912ba3a350bb058d50a4775/pages/2023/SeychellesWarbler/Tables/ADD_I.csv) is available on the github page.
 
 # Morphometric and Island Comparison
@@ -281,7 +277,9 @@ ROglmplot <- ggplot(ROglmdat, aes(x=Lifespan,y=ReproductiveOutput)) +
 fitplot <- ggarrange(coxmeplot,ROglmplot,  labels = c("A","B"))
 fitplot
 ```
+
 Time taken to run the whole script
+
 ```{r time, echo=FALSE}
 end_time<-Sys.time()
 
@@ -289,8 +287,9 @@ round((end_time - start_time), 3)
 ```
 
 # Acknowledgment
+
 Thank you for going through the code and supporting open research. This paper would not have been possible without all authors contributing towards it. Massive thanks to everyone that has shared their excitement for this paper.
 
 <p align="center">
-![](Images/chuenlogotransparenthd.png){width=30%}
+![](Images/chuenlogotransparenthd.png){width="30%"}
 </p>
